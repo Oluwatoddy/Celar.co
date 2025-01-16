@@ -1,0 +1,403 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Celar - Connecting Vendors and Buyers
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   @keyframes fadeIn {
+    from {
+     opacity: 0;
+    }
+    to {
+     opacity: 1;
+    }
+   }
+   .fade-in {
+    animation: fadeIn 2s ease-in-out;
+   }
+   .carousel {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+   }
+   .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+   }
+   .carousel-item {
+    flex: none;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+   }
+   .carousel-item:hover {
+    transform: scale(1.05);
+   }
+   .carousel-control-prev,
+   .carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 0.5rem;
+    cursor: pointer;
+   }
+   .carousel-control-prev {
+    left: 0;
+   }
+   .carousel-control-next {
+    right: 0;
+   }
+   .hover-zoom {
+    position: relative;
+    overflow: hidden;
+   }
+   .hover-zoom img {
+    transition: transform 0.5s ease-in-out;
+   }
+   .hover-zoom:hover img {
+    transform: scale(1.1);
+   }
+   .hover-zoom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://placehold.co/300x200?text=Hover+Image');
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+   }
+   .hover-zoom:hover::before {
+    opacity: 1;
+   }
+   .nav-link {
+    position: relative;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: #4a5568;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+   }
+   .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #4a5568;
+    transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+   }
+   .nav-link:hover {
+    color: #2d3748;
+   }
+   .nav-link:hover::after {
+    width: 100%;
+    left: 0;
+   }
+   .nav-link.active {
+    color: #2d3748;
+   }
+   .nav-link.active::after {
+    width: 100%;
+    left: 0;
+   }
+   .animated-bg {
+    background: linear-gradient(270deg, #ff7e5f, #feb47b);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+   }
+   @keyframes gradientAnimation {
+    0% {
+     background-position: 0% 50%;
+    }
+    50% {
+     background-position: 100% 50%;
+    }
+    100% {
+     background-position: 0% 50%;
+    }
+   }
+  </style>
+ </head>
+ <body class="font-roboto bg-gray-100">
+  <header class="bg-white shadow-md">
+   <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <div class="flex items-center">
+     <img alt="Celar logo, a stylized letter 'C' with a shopping cart icon" class="h-10 w-10" src="https://placehold.co/50x50"/>
+     <span class="ml-2 text-xl font-bold text-gray-800">
+      Celar
+     </span>
+    </div>
+    <nav class="hidden md:flex space-x-4">
+     <a class="nav-link" href="#hero">
+      Home
+     </a>
+     <a class="nav-link" href="#about">
+      About
+     </a>
+     <a class="nav-link" href="#features">
+      Features
+     </a>
+     <a class="nav-link" href="#contact">
+      Contact
+     </a>
+     <a class="nav-link" href="#">
+        Login
+       </a>
+    </nav>
+    <div class="md:hidden">
+     <button class="text-gray-600 focus:outline-none" id="menu-toggle">
+      <i class="fas fa-bars">
+      </i>
+     </button>
+    </div>
+   </div>
+   <nav class="hidden md:hidden bg-white shadow-md" id="mobile-menu">
+    <a class="block px-4 py-2 text-gray-600 hover:text-gray-800" href="#hero">
+     Home
+    </a>
+    <a class="block px-4 py-2 text-gray-600 hover:text-gray-800" href="#about">
+     About
+    </a>
+    <a class="block px-4 py-2 text-gray-600 hover:text-gray-800" href="#features">
+     Features
+    </a>
+    <a class="block px-4 py-2 text-gray-600 hover:text-gray-800" href="#contact">
+     Contact
+    </a>
+    <a class="block px-4 py-2 text-gray-600 hover:text-gray-800" href="#">
+        Login
+       </a>
+   </nav>
+  </header>
+  <main class="container mx-auto px-4 py-8">
+   <section class="text-center mb-12" id="hero">
+    <div class="relative">
+     <img alt="E-commerce background showing various shopping elements like carts, products, and buyers" class="w-full h-64 object-cover rounded-md mb-4" src="https://placehold.co/1200x400"/>
+     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-white fade-in">
+      <h1 class="text-4xl font-bold mb-4">
+       Welcome to Celar
+      </h1>
+      <p class="text-lg">
+       Connecting vendors and buyers seamlessly. Customize and place your orders with ease.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="mb-12 animated-bg text-white py-12" id="about">
+    <div class="container mx-auto flex flex-col md:flex-row items-center">
+     <div class="md:w-1/2 mb-8 md:mb-0">
+      <div class="grid grid-cols-2 gap-4">
+       <img alt="Collage image 1 showing vendors managing products" class="w-full h-40 object-cover rounded-md" src="https://placehold.co/300x200"/>
+       <img alt="Collage image 2 showing buyers customizing orders" class="w-full h-40 object-cover rounded-md" src="https://placehold.co/300x200"/>
+       <img alt="Collage image 3 showing seamless transactions" class="w-full h-40 object-cover rounded-md" src="https://placehold.co/300x200"/>
+       <img alt="Collage image 4 showing satisfied customers" class="w-full h-40 object-cover rounded-md" src="https://placehold.co/300x200"/>
+      </div>
+     </div>
+     <div class="md:w-1/2 md:pl-8">
+      <h2 class="text-3xl font-bold mb-4">
+       About Celar
+      </h2>
+      <p class="text-lg mb-8">
+       Celar is a revolutionary platform that connects vendors and buyers, allowing for seamless transactions and customizable orders. Our mission is to make online shopping easier and more efficient for everyone.
+      </p>
+      <p class="text-lg">
+       Our platform provides vendors with the tools they need to manage their products and orders efficiently. Buyers can easily customize their orders to meet their specific needs and preferences. Experience smooth and secure transactions every time you place an order on Celar.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="mb-12" id="features">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+     Features
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="bg-white p-6 rounded-lg shadow-md hover-zoom">
+      <img alt="A vendor listing products on the Celar platform" class="w-full h-40 object-cover rounded-md mb-4" src="https://placehold.co/300x200"/>
+      <h3 class="text-xl font-bold text-gray-800 mb-2">
+       Vendor Management
+      </h3>
+      <p class="text-gray-600">
+       Easily manage your products and orders with our intuitive vendor dashboard.
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md hover-zoom">
+      <img alt="A buyer customizing an order on the Celar platform" class="w-full h-40 object-cover rounded-md mb-4" src="https://placehold.co/300x200"/>
+      <h3 class="text-xl font-bold text-gray-800 mb-2">
+       Customizable Orders
+      </h3>
+      <p class="text-gray-600">
+       Buyers can customize their orders to meet their specific needs and preferences.
+      </p>
+     </div>
+     <div class="bg-white p-6 rounded-lg shadow-md hover-zoom">
+      <img alt="A seamless transaction process on the Celar platform" class="w-full h-40 object-cover rounded-md mb-4" src="https://placehold.co/300x200"/>
+      <h3 class="text-xl font-bold text-gray-800 mb-2">
+       Seamless Transactions
+      </h3>
+      <p class="text-gray-600">
+       Experience smooth and secure transactions every time you place an order.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+     Latest News
+    </h2>
+    <div class="carousel">
+     <div class="carousel-inner">
+      <div class="carousel-item bg-white p-6 rounded-lg shadow-md flex items-center">
+       <img alt="News image showing a new feature release on the Celar platform" class="w-24 h-24 object-cover rounded-md mr-4" src="https://placehold.co/100x100"/>
+       <div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">
+         New Feature Release
+        </h3>
+        <p class="text-gray-600">
+         We are excited to announce the release of our new feature that enhances the user experience.
+        </p>
+       </div>
+      </div>
+      <div class="carousel-item bg-white p-6 rounded-lg shadow-md flex items-center">
+       <img alt="News image showing a partnership announcement with a major vendor" class="w-24 h-24 object-cover rounded-md mr-4" src="https://placehold.co/100x100"/>
+       <div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">
+         Partnership Announcement
+        </h3>
+        <p class="text-gray-600">
+         Celar has partnered with a major vendor to bring you more products and better deals.
+        </p>
+       </div>
+      </div>
+      <div class="carousel-item bg-white p-6 rounded-lg shadow-md flex items-center">
+       <img alt="News image showing a user testimonial about the Celar platform" class="w-24 h-24 object-cover rounded-md mr-4" src="https://placehold.co/100x100"/>
+       <div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">
+         User Testimonials
+        </h3>
+        <p class="text-gray-600">
+         Hear from our satisfied users about their experiences with Celar.
+        </p>
+       </div>
+      </div>
+     </div>
+     <div class="carousel-control-prev" onclick="prevSlide()">
+      <i class="fas fa-chevron-left">
+      </i>
+     </div>
+     <div class="carousel-control-next" onclick="nextSlide()">
+      <i class="fas fa-chevron-right">
+      </i>
+     </div>
+    </div>
+   </section>
+   <section class="mb-12" id="contact">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">
+     Contact Us
+    </h2>
+    <div class="bg-white p-6 rounded-lg shadow-md">
+     <form>
+      <div class="mb-4">
+       <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+        Name
+       </label>
+       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" placeholder="Your Name" type="text"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+        Email
+       </label>
+       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" placeholder="Your Email" type="email"/>
+      </div>
+      <div class="mb-4">
+       <label class="block text-gray-700 text-sm font-bold mb-2" for="message">
+        Message
+       </label>
+       <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" placeholder="Your Message" rows="4">
+       </textarea>
+      </div>
+      <div class="flex items-center justify-between">
+       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+        Send
+       </button>
+      </div>
+     </form>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-white shadow-md mt-12">
+   <div class="container mx-auto px-4 py-6 flex justify-between items-center">
+    <p class="text-gray-600">
+     © 2023 Celar. All rights reserved.
+    </p>
+    <div class="space-x-4">
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      <i class="fab fa-twitter">
+      </i>
+     </a>
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a class="text-gray-600 hover:text-gray-800" href="#">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+    </div>
+   </div>
+  </footer>
+  <script>
+   let currentIndex = 0;
+   const items = document.querySelectorAll('.carousel-item');
+   const totalItems = items.length;
+
+   function showSlide(index) {
+    const carouselInner = document.querySelector('.carousel-inner');
+    carouselInner.style.transform = `translateX(-${index * 100}%)`;
+   }
+
+   function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalItems;
+    showSlide(currentIndex);
+   }
+
+   function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    showSlide(currentIndex);
+   }
+
+   setInterval(nextSlide, 5000);
+
+   // Add active class to the current navigation link
+   const navLinks = document.querySelectorAll('.nav-link');
+   navLinks.forEach(link => {
+    link.addEventListener('click', function() {
+     navLinks.forEach(nav => nav.classList.remove('active'));
+     this.classList.add('active');
+    });
+   });
+
+   // Toggle mobile menu
+   const menuToggle = document.getElementById('menu-toggle');
+   const mobileMenu = document.getElementById('mobile-menu');
+   menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+   });
+  </script>
+ </body>
+</html>
