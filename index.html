@@ -1,42 +1,36 @@
-Sure, I'll make the navbar mobile responsive with a menu button that toggles the menu visibility. Here's the updated code:
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>CELAR</title>
-    <link rel="shortcut icon" href="./Assets/logos/celar logo.jpg" type="image/x-icon">
+    <title>Celar - Your One-Stop Shop</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" href="./Assets/logos/celar logo.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
     <style>
-        .menu-item {
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        .nav-item {
+            margin-right: 1rem;
+            padding: 0.5rem 1rem;
             position: relative;
-            padding-bottom: 5px;
         }
-        .menu-item::after {
+        .nav-item:hover {
+            font-size: 1.125rem;
+            color: #333;
+            transition: all 0.3s ease-in-out;
+        }
+        .nav-item.active::after {
             content: '';
-            position: absolute;
-            width: 0;
+            display: block;
+            width: 20px;
             height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: black;
-            transition: width 0.3s ease-in-out;
+            background-color: #333;
+            margin: 0 auto;
+            margin-top: 4px;
         }
-        .menu-item:hover::after,
-        .menu-item.active::after {
-            width: 100%;
-        }
-        .login-button {
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-        }
-        .login-button:hover {
-            background-color: black;
-            color: white;
-        }
-        .hero-section {
+        .fade-in {
             animation: fadeIn 2s ease-in-out;
         }
         @keyframes fadeIn {
@@ -47,449 +41,350 @@ Sure, I'll make the navbar mobile responsive with a menu button that toggles the
                 opacity: 1;
             }
         }
-        .hero-text {
-            animation: slideInFromLeft 1s ease-in-out;
+        .slide-up {
+            animation: slideUp 1s ease-in-out;
         }
-        .hero-subtext {
-            animation: slideInFromRight 1s ease-in-out;
-        }
-        @keyframes slideInFromLeft {
+        @keyframes slideUp {
             from {
-                transform: translateX(-100%);
+                transform: translateY(20px);
                 opacity: 0;
             }
             to {
-                transform: translateX(0);
+                transform: translateY(0);
                 opacity: 1;
             }
         }
-        @keyframes slideInFromRight {
+        .slide-down {
+            animation: slideDown 0.5s ease-in-out;
+        }
+        @keyframes slideDown {
             from {
-                transform: translateX(100%);
+                transform: translateY(-20px);
                 opacity: 0;
             }
             to {
-                transform: translateX(0);
+                transform: translateY(0);
                 opacity: 1;
             }
-        }
-        .hero-button {
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-        .hero-button:hover {
-            background-color: black;
-            color: white;
-            transform: scale(1.1);
-        }
-        .about-section {
-            background: linear-gradient(to right, #f8f9fa, #e9ecef);
-            padding: 4rem 0;
-            animation: slideIn 2s ease-in-out;
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateX(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        .about-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .send-message-button {
-            transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, transform 0.3s ease-in-out;
-        }
-        .send-message-button:hover {
-            background-color: white;
-            color: black;
-            transform: scale(1.1);
         }
         .carousel {
-            position: relative;
-            overflow: hidden;
-        }
-        .carousel-inner {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            overflow: hidden;
+            scroll-snap-type: x mandatory;
         }
         .carousel-item {
-            min-width: 33.33%;
-            box-sizing: border-box;
-            padding: 0 10px;
+            flex: none;
+            scroll-snap-align: start;
+            margin-right: 1rem;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item:hover {
+            transform: scale(1.05);
+        }
+        .carousel-container {
             position: relative;
-            overflow: hidden;
         }
-        .carousel-item img {
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
-            filter: blur(5px);
-        }
-        .carousel-item:hover img {
-            transform: scale(1.1);
-            filter: blur(0);
-        }
-        .carousel-item:hover .carousel-text {
-            opacity: 0;
-        }
-        .carousel-text {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: white;
-            text-align: center;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .carousel-text h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .carousel-text p {
-            font-size: 0.875rem;
-        }
-        .carousel-control-prev,
-        .carousel-control-next {
+        .carousel-button {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             background-color: rgba(0, 0, 0, 0.5);
             color: white;
             border: none;
-            padding: 1rem;
+            padding: 0.5rem;
             cursor: pointer;
         }
-        .carousel-control-prev {
+        .carousel-button.left {
             left: 0;
         }
-        .carousel-control-next {
+        .carousel-button.right {
             right: 0;
         }
-        .mobile-menu {
-            transition: transform 0.3s ease-in-out;
+        .animated-text {
+            animation: textAnimation 3s ease-in forwards;
         }
-        .mobile-menu.hidden {
-            transform: translateX(-100%);
+        @keyframes textAnimation {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
-        .mobile-menu.visible {
-            transform: translateX(0);
+        .bg-overlay {
+            position: relative;
         }
+        .bg-overlay::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+        
     </style>
 </head>
-<body class="font-roboto">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md fixed w-full z-10 top-0">
-        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
-            <div class="flex items-center space-x-2">            
-                <a class="text-2xl font-playfair-display font-bold" href="#home"><img alt="CELAR logo" class="h-20 w-40" height="30" src="./Assets/logos/celar logo2.png" width="30"/></a>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">
+                <img alt="Celar logo" class="h-12" height="40" src="./Assets/logos/celar logo2.png" width="auto"/>
+            </div>
+            <nav class="hidden md:flex space-x-4">
+                <a class="text-gray-600 hover:text-gray-800 nav-item" href="#home">Home</a>
+                <a class="text-gray-600 hover:text-gray-800 nav-item" href="#Abt">About</a>
+                <a class="text-gray-600 hover:text-gray-800 nav-item" href="#prods">Products</a>
+                <a class="text-gray-600 hover:text-gray-800 nav-item" href="#call">Contact</a>
+            </nav>
+            <div class="hidden md:flex space-x-4">
+                <a class="text-gray-600 hover:text-gray-800 nav-item flex items-center" href="#"><i class="fas fa-search"></i></a>
+                <a class="text-gray-600 hover:text-gray-800 nav-item flex items-center" href="login.html"><i class="fas fa-user"></i></a>
+                <a class="text-gray-600 hover:text-gray-800 nav-item flex items-center" href="#"><i class="fas fa-shopping-cart"></i></a>
             </div>
             <div class="md:hidden">
-                <button id="menu-button" class="text-black focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            <ul id="menu" class="hidden md:flex space-x-8">
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#home">Home</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#features">Features</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#about">About Us</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#blogs">Blogs</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#contact">Contact</a>
-                </li>
-            </ul>
-            <div class="hidden md:flex space-x-4">
-                <a class="login-button border border-black py-1 px-2 rounded text-sm" href="#">Login</a>
+                <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="mobile-menu-button"><i class="fas fa-bars"></i></button>
             </div>
         </div>
-        <div id="mobile-menu" class="mobile-menu hidden fixed inset-0 bg-white z-20 p-4">
-            <div class="flex justify-between items-center mb-4">
-                <a class="text-2xl font-playfair-display font-bold" href="#">CELAR</a>
-                <button id="close-button" class="text-black focus:outline-none">
-                    <i class="fas fa-times text-2xl"></i>
-                </button>
+        <div class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-50 hidden" id="mobile-menu">
+            <div class="bg-white w-64 h-full shadow-lg slide-down">
+                <div class="flex justify-between items-center p-4">
+                    <div class="text-2xl font-bold text-gray-800">
+                        <img alt="Celar logo" class="h-10" height="40" src="./Assets/logos/celar logo2.png" width="auto"/>
+                    </div>
+                    <button class="text-gray-600 hover:text-gray-800 focus:outline-none" id="mobile-menu-close"><i class="fas fa-times"></i></button>
+                </div>
+                <nav class="px-4 pt-2 pb-4 space-y-1">
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item" href="#home">Home</a>
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item" href="#Abt">About</a>
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item" href="#prods">Products</a>
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item" href="#call">Contact</a>
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item flex items-center" href="#"><i class="fas fa-search"></i></a>
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item flex items-center" href="login.html"><i class="fas fa-user"></i></a>
+                    <a class="block text-gray-600 hover:text-gray-800 nav-item flex items-center" href="#"><i class="fas fa-shopping-cart"></i></a>
+                </nav>
             </div>
-            <ul class="flex flex-col space-y-4">
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#home">Home</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#features">Features</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#about">About Us</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#blogs">Blogs</a>
-                </li>
-                <li class="menu-item">
-                    <a class="hover:text-gray-700" href="#contact">Contact</a>
-                </li>
-                <li>
-                    <a class="login-button border border-black py-1 px-2 rounded text-sm" href="#">Login</a>
-                </li>
-            </ul>
         </div>
-    </nav>
+    </header>
     <!-- Hero Section -->
-    <section id="home" class="relative hero-section mt-16">
-        <img alt="Luxurious jewelry and watches displayed elegantly" class="w-full h-auto" height="800" src="https://storage.googleapis.com/a1aa/image/aFIwt883mEraGVoHlp4rM0pwNHMCFV0NjEccxD0VvDnxeCEKA.jpg" width="1920"/>
+    <section class="relative fade-in" id="home">
+        <video alt="A stylish and modern shopping experience with various products displayed" class="w-full h-auto object-cover position-fixed overflow-hidden z-index--1" height="auto" src="./Assets/img/her-section.mp4" width="1920" autoplay loop muted playsinline>        
+        </video>
         <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <div class="text-center text-white">
-                <h1 class="text-4xl md:text-6xl font-playfair-display font-bold hero-text">Welcome to Celar</h1>
-                <p class="mt-4 text-lg md:text-xl hero-subtext">Connecting vendors and buyers seamlessly.<br/>Customize and place your orders with ease.</p>
-                <a class="mt-6 inline-block bg-white text-black py-2 px-4 rounded-full font-bold hero-button" href="#">Log In</a>
+                <h1 class="text-4xl font-bold mb-4">Welcome to Celar</h1>
+                <p class="text-lg mb-6">Your one-stop shop to everything and anything</p>
+                <a class="bg-yellow-500 text-white px-6 py-3 rounded-full hover:bg-yellow-600" href="#">Shop Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- About Section -->
+    <section class="relative container mx-auto px-4 py-16 fade-in bg-overlay" id="Abt">
+        <div class="absolute inset-0 z-0 grid grid-cols-3 gap-4 h-full">
+            <img alt="Commerce and vendors around the globe 1" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/cl-1Hwxn6wuezc03lB3-2vKRV9IZhzYYqMc4WcjoOsE.jpg" width="400"/>
+            <img alt="Commerce and vendors around the globe 2" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/aRGxlnF0kSBLISHQhb-oDESYllmd4CHxx1ncvkNk3Ds.jpg" width="400"/>
+            <img alt="Commerce and vendors around the globe 3" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/zNYGQdIW-GxSOetqV7CsHJIgMUGxRrxFa3-mG3Csq9w.jpg" width="400"/>
+        </div>
+        <div class="relative z-10 text-center mb-12 text-white">
+            <h2 class="text-3xl font-bold">About Celar</h2>
+            <p class="mt-4 animated-text">Celar is a revolutionary platform that connects vendors to consumers, allowing seamless transactions. <br>
+                 Our mission is to make online shopping easier and more efficient for everyone.</p>
+            <p class="mt-4 animated-text">Our platform provides vendors with the tools they need to manage their products and orders efficiently <br>
+                while providing consumers with a platform that would seamlessly and easily help them transact,<br>
+                 buy, and customize their orders to meet their specific needs and preferences.</p>
+            <p class="mt-4 animated-text">Experience smooth and secure transactions every time you place an order on Celar.</p>
+            <a class="bg-yellow-500 text-white px-6 py-3 rounded-full mt-6 inline-block hover:bg-yellow-600" href="login.html">Join the Waiting List</a>
+        </div>
+    </section>
+    <!-- Featured Products Section -->
+    <section class="bg-gray-200 py-16 fade-in" id="prods">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Products</h2>
+            </div>
+            <div class="carousel-container">
+                <button class="carousel-button left" id="carousel-prev"><i class="fas fa-chevron-left"></i></button>
+                <div class="carousel" id="carousel">
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg">
+                        <img alt="Product 1" class="w-full h-64 object-cover rounded-t-lg" height="400" src="https://storage.googleapis.com/a1aa/image/gNswp4rkvbGCFYhhkccdTzQ5koBuwBKic1z_lXimaSM.jpg" width="400"/>
+                        <h3 class="text-xl font-bold text-gray-800 mt-4">Product 1</h3>
+                        <p class="text-gray-600 mt-2">$29.99</p>
+                        <a class="bg-yellow-500 text-white px-4 py-2 rounded-full mt-4 inline-block hover:bg-yellow-600" href="#">Buy Now</a>
+                    </div>
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg">
+                        <img alt="Product 2" class="w-full h-64 object-cover rounded-t-lg" height="400" src="https://storage.googleapis.com/a1aa/image/LLbCo4jq3IYY655dtWkM3Hva6FiZztiFpDcU6FJfBsA.jpg" width="400"/>
+                        <h3 class="text-xl font-bold text-gray-800 mt-4">Product 2</h3>
+                        <p class="text-gray-600 mt-2">$39.99</p>
+                        <a class="bg-yellow-500 text-white px-4 py-2 rounded-full mt-4 inline-block hover:bg-yellow-600" href="#">Buy Now</a>
+                    </div>
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg">
+                        <img alt="Product 3" class="w-full h-64 object-cover rounded-t-lg" height="400" src="https://storage.googleapis.com/a1aa/image/KeTC9NTWGkbrA-YPNLu8pRwsMsmL7ERWH5xp1DR0nU4.jpg" width="400"/>
+                        <h3 class="text-xl font-bold text-gray-800 mt-4">Product 3</h3>
+                        <p class="text-gray-600 mt-2">$49.99</p>
+                        <a class="bg-yellow-500 text-white px-4 py-2 rounded-full mt-4 inline-block hover:bg-yellow-600" href="#">Buy Now</a>
+                    </div>
+                    <div class="carousel-item bg-white p-6 rounded-lg shadow-lg">
+                        <img alt="Product 4" class="w-full h-64 object-cover rounded-t-lg" height="400" src="https://storage.googleapis.com/a1aa/image/cwFO2o8kpTzTfww28162FT6FVGjqq593icx0vkZK6QQ.jpg" width="400"/>
+                        <h3 class="text-xl font-bold text-gray-800 mt-4">Product 4</h3>
+                        <p class="text-gray-600 mt-2">$59.99</p>
+                        <a class="bg-yellow-500 text-white px-4 py-2 rounded-full mt-4 inline-block hover:bg-yellow-600" href="#">Buy Now</a>
+                    </div>
+                </div>
+                <button class="carousel-button right" id="carousel-next"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
     <!-- Features Section -->
-    <section id="features" class="py-12 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-playfair-display font-bold text-center mb-8">Features</h2>
-            <div class="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img alt="Elegant gold necklace with diamonds" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/rAojZ8zdwHYXLp8ycS6hgauZNjNPBULfMooBNeekZCxE2LQoA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Gold Necklace</h3>
-                            <p class="mt-2">$2,500</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="Luxury silver watch with leather strap" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/2ZkZnO8jRlKSNVMhO5hDpnrh4gmNf1Sg01FJHOvA3r0n9CEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Silver Watch</h3>
-                            <p class="mt-2">$3,200</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="Stylish leather handbag with gold accents" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/C2wY7JjG4AqrMB65ic7ZxtMr92Uu9PilYrUhn3oXjUbyeCEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Leather Handbag</h3>
-                            <p class="mt-2">$1,800</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="Elegant gold bracelet with intricate design" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/3ZkZnO8jRlKSNVMhO5hDpnrh4gmNf1Sg01FJHOvA3r0n9CEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Gold Bracelet</h3>
-                            <p class="mt-2">$1,500</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="Luxury diamond ring with a large central stone" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/4ZkZnO8jRlKSNVMhO5hDpnrh4gmNf1Sg01FJHOvA3r0n9CEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Diamond Ring</h3>
-                            <p class="mt-2">$5,000</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="Elegant pearl earrings with gold accents" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/5ZkZnO8jRlKSNVMhO5hDpnrh4gmNf1Sg01FJHOvA3r0n9CEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Pearl Earrings</h3>
-                            <p class="mt-2">$1,200</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" onclick="prevSlide('features')">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-control-next" onclick="nextSlide('features')">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
+  <section class="container mx-auto px-4 py-16 fade-in">
+    <div class="text-center mb-12">
+     <h2 class="text-3xl font-bold text-gray-800">
+      Features
+     </h2>
+     <p class="text-gray-600 mt-4">
+      Explore the powerful features of our platform.
+     </p>
+    </div>
+    <div class="flex flex-wrap -mx-4">
+     <div class="w-full md:w-1/4 px-4 mb-8 feature-item">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+       <img alt="Mockup of an iPhone showing an e-commerce website tracking orders" class="w-full h-64 object-cover rounded-t-lg" height="300" src="https://storage.googleapis.com/a1aa/image/Dc2n5ZyrNv95Wc9-eNYXJynbPdvYhtrs9bOwJ3NZ4GM.jpg" width="400"/>
+       <h3 class="text-xl font-bold text-gray-800 mt-4">
+        Order Tracking
+       </h3>
+       <p class="text-gray-600 mt-2">
+        Track your orders seamlessly with our intuitive interface.
+       </p>
+      </div>
+     </div>
+     <div class="w-full md:w-1/4 px-4 mb-8 feature-item">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+       <img alt="Mockup of a tablet showing an e-commerce cart page" class="w-full h-64 object-cover rounded-t-lg" height="300" src="https://storage.googleapis.com/a1aa/image/AXy0a0Kn2sXpLj1LObqQSnnE3lzM1Wl60B2oDLcfnRQ.jpg" width="400"/>
+       <h3 class="text-xl font-bold text-gray-800 mt-4">
+        Cart Page
+       </h3>
+       <p class="text-gray-600 mt-2">
+        Easily manage your cart and checkout with our user-friendly cart page.
+       </p>
+      </div>
+     </div>
+     <div class="w-full md:w-1/4 px-4 mb-8 feature-item">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+       <img alt="Mockup of a desktop showing a payment platform" class="w-full h-64 object-cover rounded-t-lg" height="300" src="https://storage.googleapis.com/a1aa/image/VRO99sBAJA0vizSH6iVTZ6OAxB7JBQvjHFb1GbTgZj4.jpg" width="400"/>
+       <h3 class="text-xl font-bold text-gray-800 mt-4">
+        Payment Platform
+       </h3>
+       <p class="text-gray-600 mt-2">
+        Experience secure and smooth transactions with our integrated payment platform.
+       </p>
+      </div>
+     </div>
+     <div class="w-full md:w-1/4 px-4 mb-8 feature-item">
+      <div class="bg-white p-6 rounded-lg shadow-lg">
+       <img alt="Mockup of a laptop showing product customization" class="w-full h-64 object-cover rounded-t-lg" height="300" src="https://storage.googleapis.com/a1aa/image/VREjY1BtAD4bBmd0Hhp9KSzLfwJhZ21LwB9U1JZhkIk.jpg" width="400"/>
+       <h3 class="text-xl font-bold text-gray-800 mt-4">
+        Product Customization
+       </h3>
+       <p class="text-gray-600 mt-2">
+        Customize your products to meet your specific needs and preferences.
+       </p>
+      </div>
+     </div>
+    </div>
+   </section>
+    <!-- Contact Section -->
+    <section class="container mx-auto px-4 py-16 fade-in" id="call">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800">Contact Us</h2>
+            <p class="text-gray-600 mt-4">We'd love to hear from you! Reach out to us using the form below or visit us at our office.</p>
         </div>
-    </section>
-    <!-- About Us Section -->
-    <section id="about" class="about-section">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-playfair-display font-bold text-center mb-8">About Us</h2>
-            <div class="about-content max-w-2xl mx-auto text-center">
-                <p class="text-lg text-gray-700 mb-4">
-                    Celar is a revolutionary platform that connects vendors and buyers, allowing for seamless transactions and customizable orders. Our mission is to make online shopping easier and more efficient for everyone.
-                </p>
-                <p class="text-lg text-gray-700 mb-4">
-                    Our platform provides vendors with the tools they need to manage their products and orders efficiently. Buyers can easily customize their orders to meet their specific needs and preferences. Experience smooth and secure transactions every time you place an order on Celar.
-                </p>
-            </div>
-        </div>
-    </section>
-    <!-- Blogs Section -->
-    <section id="blogs" class="py-12 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-playfair-display font-bold text-center mb-8">Blogs</h2>
-            <div class="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item">
-                        <img alt="CELAR's latest jewelry collection launch event" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/eQbxEF5Zelli2UwNjxrhfmaZYUkG3Ta4RNzL5nhObUWI2LQoA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">New Jewelry Collection Launch</h3>
-                            <p class="mt-2">Discover our latest collection of exquisite jewelry pieces.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="CELAR's new flagship store opening" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/nZVsUN5le9x1OKEQe2R1g5X3ZU08odpzzsk3o3Gee2sysXgQB.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Flagship Store Opening</h3>
-                            <p class="mt-2">Join us for the grand opening of our new flagship store.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="CELAR's collaboration with a famous designer" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/OW1VzkRGRfVgYK9vfEr8zEc3dHD0YMlFsa9NyYfGjvWH2LQoA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Designer Collaboration</h3>
-                            <p class="mt-2">We are excited to announce our collaboration with a renowned designer.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="CELAR's new sustainable jewelry line" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/6ZkZnO8jRlKSNVMhO5hDpnrh4gmNf1Sg01FJHOvA3r0n9CEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Sustainable Jewelry Line</h3>
-                            <p class="mt-2">Discover our new line of sustainable jewelry made from recycled materials.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img alt="CELAR's partnership with a luxury fashion brand" class="w-full h-auto" height="200" src="https://storage.googleapis.com/a1aa/image/7ZkZnO8jRlKSNVMhO5hDpnrh4gmNf1
-                        Sg01FJHOvA3r0n9CEKA.jpg" width="200"/>
-                        <div class="carousel-text">
-                            <h3 class="text-xl font-bold">Luxury Brand Partnership</h3>
-                            <p class="mt-2">We are thrilled to partner with a luxury fashion brand for an exclusive collection.</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" onclick="prevSlide('blogs')">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button class="carousel-control-next" onclick="nextSlide('blogs')">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
-            </div>
-        </div>
-    </section>
-   <!-- Contact Section -->
-<section id="contact" class="py-12 bg-gray-100">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-playfair-display font-bold text-center mb-8">Contact Us</h2>
-        <div class="flex flex-col md:flex-row justify-between">
-            <div class="max-w-md mx-auto md:w-1/2 md:mr-4">
-                <form>
+        <div class="flex flex-wrap -mx-4">
+            <div class="w-full md:w-1/2 px-4 mb-8">
+                <form class="bg-white p-6 rounded-lg shadow-lg">
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="name">Name</label>
-                        <input class="border border-gray-300 p-2 w-full" type="text" id="name" required/>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Name</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" placeholder="Your Name">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="email">Email</label>
-                        <input class="border border-gray-300 p-2 w-full" type="email" id="email" required/>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email</label>
+                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Your Email">
                     </div>
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="message">Message</label>
-                        <textarea class="border border-gray-300 p-2 w-full" id="message" rows="4" required></textarea>
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
+                        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="message" placeholder="Your Message" rows="5"></textarea>
                     </div>
-                    <button class="send-message-button bg-black text-white py-2 px-4 rounded" type="submit">Send Message</button>
+                    <div class="flex items-center justify-between">
+                        <button class="bg-black text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-gray-800" type="button">Send</button>
+                    </div>
                 </form>
             </div>
-            <div class="md:w-1/2 md:ml-4 mt-8 md:mt-0">
-                <h3 class="text-xl font-bold">Our Address</h3>
-                <p class="text-gray-700">123 Celar Street, Suite 456<br/>City, State, ZIP Code</p>
-                <h3 class="text-xl font-bold mt-6">Location</h3>
-                <div class="w-full h-64">
-                    <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509198!2d144.9537353153163!3d-37.81627997975157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f0b0b5b%3A0x5045675218ceed0!2s123%20Celar%20Street%2C%20Suite%20456%2C%20City%2C%20State%2C%20ZIP%20Code!5e0!3m2!1sen!2sus!4v1633031234567!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+            <div class="w-full md:w-1/2 px-4 mb-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Our Location</h3>
+                    <div class="w-full h-64">
+                        <iframe class="w-full h-full rounded-lg" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086509374048!2d144.9630579153169!3d-37.8141079797517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf577d1b6b1a1e0e!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1633071234567!5m2!1sen!2sau" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-black py-8">
-    <div class="container mx-auto text-white">
-        <div class="flex flex-col md:flex-row justify-between mb-6">
-            <div class="mb-4 md:mb-0">
-                <img src="./Assets/logos/celar logo.png" alt="CELAR Logo" class="h-12 mb-4"/>
-                <p class="text-gray-300">
-                    Celar is a revolutionary platform <br>
-                    that connects vendors and buyers,<br>
-                    allowing for seamless transactions <br>
-                    and customizable orders.
-                </p>
-            </div>
-            <div class="mb-4 md:mb-0">
-                <h3 class="text-lg font-bold">Customer Service</h3>
-                <ul class="text-gray-300">
-                    <li><a href="#contact" class="hover:text-white">Contact Us</a></li>
-                    <li><a href="#faq" class="hover:text-white">FAQ</a></li>
-                    <li><a href="#returns" class="hover:text-white">Returns</a></li>
-                    <li><a href="#shipping" class="hover:text-white">Shipping Information</a></li>
-                </ul>
-            </div>
-            <div class="mb-4 md:mb-0">
-                <h3 class="text-lg font-bold">About Us</h3>
-                <ul class="text-gray-300">
-                    <li><a href="#about" class="hover:text-white">Our Story</a></li>
-                    <li><a href="#careers" class="hover:text-white">Careers</a></li>
-                    <li><a href="#sustainability" class="hover:text-white">Sustainability</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-lg font-bold">Follow Us</h3>
-                <div class="flex justify-center space-x-4 mt-2">
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+    </section>
+    <!-- Footer -->
+    
+    <footer class="bg-black text-white py-8 fade-in">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap -mx-4">
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <h3 class="text-xl font-bold mb-4">Celar</h3>
+                    <p>Celar is a revolutionary platform that connects vendors to consumers, allowing seamless transactions. <br>
+                        Join the CELAR Revolution
+                        CELAR is more than a marketplace—it’s a platform that fosters growth, innovation, and connectivity. Whether you're a customer enjoying effortless shopping or a vendor reaching new heights, CELAR empowers you to achieve your goals.
+                        CELAR—where innovation meets commerce</p>
+                </div>
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul>
+                        <li><a class="text-gray-400 hover:text-white" href="#home">Home</a></li>
+                        <li><a class="text-gray-400 hover:text-white" href="#Abt">About Celar</a></li>
+                        <li><a class="text-gray-400 hover:text-white" href="#prods">Products</a></li>
+                        <li><a class="text-gray-400 hover:text-white" href="#call">Contact</a></li>
+                        <li><a class="text-gray-400 hover:text-white" href="login.html">Sign in</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/3 px-4 mb-8">
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="space-x-4">
+                        <a class="text-gray-400 hover:text-white" href="mailto:celarmobilemarlet@gmail.com"><i class="fa fa-envelope"></i></a>
+                        <a class="text-gray-400 hover:text-white" href="https://twitter.com/celarMarket"><i class="fab fa-twitter"></i></a>
+                        <a class="text-gray-400 hover:text-white" href="https://www.instagram.com/celar_mobilemarket"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/+2348137094738" class="whatsapp-button"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                    <a href="mailto:celarmobilemarlet@gmail.com">celarmobilemarlet@gmail.com</a> <br>
+                    <a href="tel:+2349157444669">+2349157444669</a><br>
+                    <a href="tel:+2348122711113">+2348122711113</a>
                 </div>
             </div>
+            <div class="text-center text-gray-400 mt-8">© 2025 Celar. All rights reserved.</div>
         </div>
-        <div class="text-center">
-            <p class="text-gray-400">123 Celar Street, Suite 456, City, State, ZIP Code</p>
-            <p class="text-gray-400">Phone: (123) 456-7890 | Email: info@celar.com</p>
-            <p class="text-gray-400">© 2023 CELAR. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
+    </footer>
     <script>
-        let currentSlide = 0;
+        const carousel = document.getElementById('carousel');
+        const prevButton = document.getElementById('carousel-prev');
+        const nextButton = document.getElementById('carousel-next');
 
-        function showSlide(slideIndex, section) {
-            const slides = document.querySelectorAll(`#${section} .carousel-item`);
-            if (slideIndex >= slides.length) {
-                currentSlide = 0;
-            } else if (slideIndex < 0) {
-                currentSlide = slides.length - 1;
-            } else {
-                currentSlide = slideIndex;
-            }
-            const offset = -currentSlide * 100;
-            document.querySelector(`#${section} .carousel-inner`).style.transform = `translateX(${offset}%)`;
-        }
-
-        function nextSlide(section) {
-            showSlide(currentSlide + 1, section);
-        }
-
-        function prevSlide(section) {
-            showSlide(currentSlide - 1, section);
-        }
-
-        document.getElementById('menu-button').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-            document.getElementById('mobile-menu').classList.toggle('visible');
+        nextButton.addEventListener('click', () => {
+            carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' });
         });
 
-        document.getElementById('close-button').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-            document.getElementById('mobile-menu').classList.toggle('visible');
+        prevButton.addEventListener('click', () => {
+            carousel.scrollBy({ left: -carousel.clientWidth, behavior: 'smooth' });
+        });
+
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.remove('hidden');
+        });
+
+        document.getElementById('mobile-menu-close').addEventListener('click', function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.add('hidden');
         });
     </script>
 </body>

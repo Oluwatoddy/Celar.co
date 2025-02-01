@@ -1,0 +1,145 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Sign Up - Celar App
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: 'Roboto', sans-serif;
+        }
+  </style>
+ </head>
+ <body class="bg-gray-100 flex items-center justify-center min-h-screen relative p-4">
+  <div class="absolute inset-0 z-0 overflow-hidden">
+   <div class="grid grid-cols-3 gap-1 h-full w-full">
+    <img alt="E-commerce product image 1" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/DBN2VAVgqlrK7d1ZneEHEurXzgio4MtM5onqxVIx-XY.jpg" width="300"/>
+    <img alt="E-commerce product image 2" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/WcstOsYoNN97kMJrYbd7VeSFHgGceMqGrze8LDl9Rdw.jpg" width="300"/>
+    <img alt="E-commerce product image 3" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/Yn1FucGLMzg3R5RPxdjY2rm7AJjQlYzJ4sojJ81BxFE.jpg" width="300"/>
+    <img alt="E-commerce product image 4" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/Wr-omjIsdnjOCHrrjQCQa0jZDiipSqt-BY484uCazIo.jpg" width="300"/>
+    <img alt="E-commerce product image 5" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/EgN9h4dC3kiSWKkCWoxOXT05_8HfwAbQt3knwKwk_kc.jpg" width="300"/>
+    <img alt="E-commerce product image 6" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/NEMq2SJBav5O9ZvzXU-1fxQYpVNqIGuH2yiqVEeQJso.jpg" width="300"/>
+    <img alt="E-commerce product image 7" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/7SfuUDRssyZCRoCnCYPdDe4NEMAca3TUFyxiVCSKAvI.jpg" width="300"/>
+    <img alt="E-commerce product image 8" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/K4k2zvW7BFn9r4Tq62GGooggbbbieRAd5M5CtiyBQ9Y.jpg" width="300"/>
+    <img alt="E-commerce product image 9" class="object-cover w-full h-full" height="300" src="https://storage.googleapis.com/a1aa/image/XxAyovsJV95DOFS9wsFNtmOvFA8Eq2hM5THKaH86egU.jpg" width="300"/>
+   </div>
+   <div class="absolute inset-0 bg-gray-900 opacity-50">
+   </div>
+  </div>
+  <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-md mx-4 sm:mx-auto z-10">
+   <div class="flex justify-center mb-6">
+    <img alt="Celar App logo, a stylized letter 'C' in white and black colors" height="100" src="./Assets/logos/celar logo.jpg" width="100"/>
+   </div>
+   <h2 class="text-2xl font-bold text-center mb-6">
+    Sign Up to Celar
+   </h2>
+   <form class="space-y-4" id="signupForm">
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="name">
+      Name
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="name" name="name" required="" type="text"/>
+     <p class="text-red-500 text-xs mt-1 hidden" id="nameError">
+      Please enter your name.
+     </p>
+    </div>
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="email">
+      Email
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" name="email" required="" type="email"/>
+     <p class="text-red-500 text-xs mt-1 hidden" id="emailError">
+      Please enter a valid email address.
+     </p>
+    </div>
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="password">
+      Password
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="password" name="password" required="" type="password"/>
+     <p class="text-red-500 text-xs mt-1 hidden" id="passwordError">
+      Password must be at least 6 characters long.
+     </p>
+    </div>
+    <div>
+     <label class="block text-sm font-medium text-gray-700" for="confirm_password">
+      Confirm Password
+     </label>
+     <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="confirm_password" name="confirm_password" required="" type="password"/>
+     <p class="text-red-500 text-xs mt-1 hidden" id="confirmPasswordError">
+      Passwords do not match.
+     </p>
+    </div>
+    <div>
+     <button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="submit">
+      Sign Up
+     </button>
+    </div>
+   </form>
+   <div class="mt-6 text-center">
+    <p class="text-sm text-gray-600">
+     Already have an account?
+     <a class="font-medium text-indigo-600 hover:text-indigo-500" href="login.html">
+      Sign in
+     </a>
+    </p>
+   </div>
+  </div>
+  <script>
+   document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let isValid = true;
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm_password').value;
+
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const passwordError = document.getElementById('passwordError');
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            nameError.classList.add('hidden');
+            emailError.classList.add('hidden');
+            passwordError.classList.add('hidden');
+            confirmPasswordError.classList.add('hidden');
+
+            if (name.trim() === '') {
+                nameError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!validateEmail(email)) {
+                emailError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (password.length < 6) {
+                passwordError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Submit the form or perform any other necessary actions
+                alert('Form submitted successfully!');
+            }
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+  </script>
+ </body>
+</html>
