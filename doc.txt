@@ -1,0 +1,45 @@
+Project Structure:
+
+- /public
+  - index.html (Landing Page with Coming Soon animation)
+  - register.html (Vendor Registration Page)
+  - login.html (Admin Login Page)
+  - /assets
+    - styles.css (Custom Tailwind styles)
+    - logo.png (ChopNow Logo)
+  
+- /admin
+  - dashboard.php (Admin Panel)
+  - vendors.php (View & manage vendors)
+
+- /includes
+  - db.php (Database connection)
+  - auth.php (Authentication handling)
+
+- /actions
+  - register_vendor.php (Handles vendor registration)
+  - login.php (Handles admin login)
+  - logout.php (Handles logout)
+
+- /database
+  - schema.sql (Database structure)
+
+---
+Database Schema:
+
+sql
+CREATE TABLE vendors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(50),
+    business_name VARCHAR(255),
+    business_address TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE admins (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL
+);
